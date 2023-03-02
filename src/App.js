@@ -25,15 +25,9 @@ function App() {
 
   return (
     <div className="App">
-    <TodoList todos={todos} setTodos={setTodos} />
-      <div
-        className="ag-theme-alpine"
-        style={{ height: "500px", width: "600px", marginTop: "20px" }}>
-        <AgGridReact
-               columnDefs={columns}
-               rowData={todos}
-               gridOptions={gridOptions}>
-        </AgGridReact>
+      <TodoList todos={todos} setTodos={setTodos} />
+      <div className="ag-theme-alpine" style={{ height: "500px", width: "600px", marginTop: "20px" }}>
+        <AgGridReact columnDefs={columns} rowData={todos} gridOptions={gridOptions} />
       </div>
     </div>
   );
