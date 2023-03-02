@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import TodoList from "./TodoList";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  // ag-grid komponentin sarakkeet
+  const columns = [
+    { headerName: "Description", field: "description", sortable: true, filter: true },
+    { headerName: "Date", field: "date", sortable: true, filter: true },
+    { headerName: "Priority", field: "priority", sortable: true, filter: true },
+  ];
+
+  // ag-grid komponentin ominaisuudet
+  const gridOptions = {
+    // Floating filter ominaisuuden päälle kytkeminen
+    floatingFilter: true,
+    // Row animation ominaisuuden päälle kytkeminen
+    animateRows: true,
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <TodoList todos={todos} setTodos={setTodos} />
+      <div
+        className="ag-theme-alpine"
+        style={{ height: "500px", width: "600px", marginTop: "20px" }}>
+        <AgGridReact
+               columnDefs={columns}
+               rowData={todos}
+               gridOptions={gridOptions}>
+        </AgGridReact>
+      </div>
     </div>
   );
 }
