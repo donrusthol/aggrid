@@ -12,7 +12,8 @@ function App() {
   const columns = [
     { headerName: "Description", field: "description", sortable: true, filter: true },
     { headerName: "Date", field: "date", sortable: true, filter: true },
-    { headerName: "Priority", field: "priority", sortable: true, filter: true },
+    { headerName: "Priority", field: "priority", sortable: true, filter: true,
+      cellStyle: params => params.value === "High" ? {color: 'red'} : {color: 'black'}}
   ];
 
   // ag-grid komponentin ominaisuudet
@@ -26,8 +27,8 @@ function App() {
   return (
     <div className="App">
       <TodoList todos={todos} setTodos={setTodos} />
-      <div className="ag-theme-alpine" style={{ height: "500px", width: "600px", marginTop: "20px" }}>
-        <AgGridReact columnDefs={columns} rowData={todos} gridOptions={gridOptions} />
+      <div className="ag-theme-material" style={{height: '700px', width: '70%', margin: 'auto'}} >
+        <AgGridReact rowSelection="single" columnDefs={columns} rowData={todos} />
       </div>
     </div>
   );
